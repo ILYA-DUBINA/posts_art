@@ -19,7 +19,7 @@
                   {{ list.title }}
                 </h2>
                 <p>
-                  {{ list.description.substring(0, 50) + '...' }}
+                  {{ list.description.substring(0, 50) + "..." }}
                 </p>
               </div>
             </div>
@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: 'CardComponent',
+  name: "CardComponent",
   components: {},
   props: {
     list: {
@@ -41,14 +41,14 @@ export default {
     },
   },
   data() {
-    return {}
+    return {};
   },
   methods: {
     getIdCard(id) {
-      this.$emit('getIdCard', id)
+      this.$emit("getIdCard", id);
     },
   },
-}
+};
 </script>
 
 <style>
