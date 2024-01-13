@@ -36,15 +36,15 @@
           class="list-group-item m-1"
         >
           {{ comment.value }}
-          <p class="text-end">
-            <ul class="list-group list-group-flush text-start ">
+          <div class="text-end">
+            <ul class="list-group list-group-flush text-start">
               <li
                 v-for="downComment in comment.downValue"
                 :key="downComment + Math.random()"
                 class="list-group-item m-1"
               >
-                {{ downComment }} 
-              </li> 
+                {{ downComment }}
+              </li>
             </ul>
             <label :for="comment.id" class="p-2"
               >Прокомментировать комментарий тут &#10549;</label
@@ -56,10 +56,14 @@
               :value="quantityDown[comment.id]"
               @input="getDownValue($event, comment.id)"
             ></textarea>
-            <button class="btn btn-primary" type="button" @click="getDownCommit(comment.id)">
+            <button
+              class="btn btn-primary"
+              type="button"
+              @click="getDownCommit(comment.id)"
+            >
               Оставить подкомментарий
             </button>
-          </p>
+          </div>
         </li>
       </ul>
       <div class="form-group">
@@ -111,13 +115,13 @@ export default {
         id: Math.random(),
         value,
         downValue: [],
-      }
+      };
     },
     getDownCommit(id) {
       const idx = this.list.comments.findIndex((el) => el.id === id);
       const oldItem = this.list.comments[idx];
       oldItem.downValue = [...oldItem.downValue, this.quantityDown[id]];
-        this.list.comments = [
+      this.list.comments = [
         ...this.list.comments.slice(0, idx),
         oldItem,
         ...this.list.comments.slice(idx + 1),
@@ -132,8 +136,8 @@ export default {
     getDownValue: function (event, id) {
       this.quantityDown[id] = event.target.value;
     },
-    saveObject(){
-       localStorage.setItem("2", JSON.stringify(this.list));
+    saveObject() {
+      localStorage.setItem("2", JSON.stringify(this.list));
     },
     getValue: function (event) {
       this.quantity = event.target.value;
