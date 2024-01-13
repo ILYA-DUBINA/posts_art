@@ -22,7 +22,7 @@
               </p>
             </div>
             <div class="text-start">
-              Дата публикации: {{ list["date-of-publication"] }}
+              Дата публикации: {{ list['date-of-publication'] }}
             </div>
           </div>
         </div>
@@ -67,7 +67,9 @@
         </li>
       </ul>
       <div class="form-group">
-        <label for="comment" class="p-2">Прокомментировать статью тут &#8659;</label>
+        <label for="comment" class="p-2"
+          >Прокомментировать статью тут &#8659;</label
+        >
         <textarea
           id="comment"
           class="form-control m-2"
@@ -88,26 +90,26 @@
 
 <script>
 export default {
-  name: "Post",
+  name: 'Post',
   data() {
     return {
       list: {},
-      quantity: "",
+      quantity: '',
       quantityDown: {},
-    };
+    }
   },
   mounted() {
-    const obj = JSON.parse(localStorage.getItem("1"))
-      ? JSON.parse(localStorage.getItem("1"))
-      : {};
-    this.list = obj;
+    const obj = JSON.parse(localStorage.getItem('1'))
+      ? JSON.parse(localStorage.getItem('1'))
+      : {}
+    this.list = obj
   },
   methods: {
     imgSrc() {
       try {
-        return require(`@/static/image/${this.list.image}`);
+        return require(`@/static/image/${this.list.image}`)
       } catch (error) {
-        return null;
+        return null
       }
     },
     createObject(value) {
@@ -115,34 +117,34 @@ export default {
         id: Math.random(),
         value,
         downValue: [],
-      };
+      }
     },
     getDownCommit(id) {
-      const idx = this.list.comments.findIndex((el) => el.id === id);
-      const oldItem = this.list.comments[idx];
-      oldItem.downValue = [...oldItem.downValue, this.quantityDown[id]];
+      const idx = this.list.comments.findIndex((el) => el.id === id)
+      const oldItem = this.list.comments[idx]
+      oldItem.downValue = [...oldItem.downValue, this.quantityDown[id]]
       this.list.comments = [
         ...this.list.comments.slice(0, idx),
         oldItem,
         ...this.list.comments.slice(idx + 1),
-      ];
-      this.quantityDown[id] = "";
+      ]
+      this.quantityDown[id] = ''
     },
     getCommit() {
-      const obj = this.createObject(this.quantity);
-      this.list.comments = [...this.list.comments, obj];
-      this.quantity = "";
+      const obj = this.createObject(this.quantity)
+      this.list.comments = [...this.list.comments, obj]
+      this.quantity = ''
     },
     getDownValue: function (event, id) {
-      this.quantityDown[id] = event.target.value;
+      this.quantityDown[id] = event.target.value
     },
     saveObject() {
-      localStorage.setItem("2", JSON.stringify(this.list));
+      localStorage.setItem('2', JSON.stringify(this.list))
     },
     getValue: function (event) {
-      this.quantity = event.target.value;
+      this.quantity = event.target.value
     },
   },
-};
+}
 </script>
 <style></style>
