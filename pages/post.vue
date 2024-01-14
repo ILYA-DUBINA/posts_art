@@ -107,7 +107,7 @@ export default {
   methods: {
     imgSrc() {
       try {
-        return require(`@/static/image/${this.list.image}`)
+        return require(`../public/image/${this.list.image}`)
       } catch (error) {
         return null
       }

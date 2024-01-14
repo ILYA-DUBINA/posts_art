@@ -8,7 +8,7 @@
               <div class="image">
                 <img
                   class="inside__content-img"
-                  :src="require(`@/static/image/${list.image}`)"
+                  :src="require(`~/public/image/${list.image}`)"
                   alt="изображение картины"
                 />
               </div>
